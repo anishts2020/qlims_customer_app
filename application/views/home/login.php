@@ -82,12 +82,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="card">
 								<div class="row">
 									<div class="col-md-12 col-lg-7 pr-0 d-none d-lg-block">
-										<img src="<?php echo base_url(); ?>assets/images/photos/login_image1.jpg" alt="img" class="br-tl-2 br-bl-2 ">
+										<img src="<?php echo base_url(); ?>assets/images/photos/login_img.jpg" alt="img" class="br-tl-2 br-bl-2 ">
 									</div>
 									<div class="col-md-12 col-lg-5 pl-0 ">
 										<div class="card-body p-6 about-con pabout">
 											<div class="card-title text-center  mb-4">LOGIN HERE</div>
-											<form action="<?=site_url('Login/login_check');?>" method="post" autocomplete="off" id="login_form">
+											<form action="<?=site_url('Login/login');?>" method="post" autocomplete="off" id="login_form">
 												<div class="form-group">
 													<input type="text" class="form-control" placeholder="Username" name="login_name" id="login_name" required>
 												</div>

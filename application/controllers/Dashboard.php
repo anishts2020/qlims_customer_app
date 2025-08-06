@@ -5,14 +5,18 @@ class Dashboard extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('Dashboard_model','dashboard');
-		if (!$this->session->userdata('admin_auth')) {
+		$this->load->model('Common_model','common');
+		if (!$this->session->userdata('logged_in')) {
 			redirect(base_url());
 		}
 	}
 
 	public function index()
 	{
-		$this->load->view('home/dashboard');
+		$a_report = $this->common->get_tickets();
+		$s_report = $this->common->get_samplereceipts();
+		$data['a_report'] = $a_report;
+		$data['s_report'] = $s_report;
+		$this->load->view('home/dashboard',$data);
 	}
 }

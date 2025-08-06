@@ -14,16 +14,14 @@ class Login extends CI_Controller {
 	}
 	
     public function login() {
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		if($username!=='' && $password!=='') {
-			$check = $this->common->admin_login($username,$password);
-			if($check) {
-				$session_data = array('admin_auth'=>1,
-				                      'id'=>$check['0']->id,
-				                      'name'=>$check['0']->full_name,
-				                      'email'=>$check['0']->email,
-									  'role_id'=>$check['0']->role_id
+		$username = $this->input->post('login_name');
+		$password = $this->input->post('pwd');
+		if($username!=='' && $password!=='') {  
+			$check = $this->common->logins($username,$password);
+			if(isset($check['cnt'])){
+				$session_data = array(	'userid' =>$check['Usr_Id'],
+										'username'=>$check['Cu_Name'],
+										'logged_in'=>TRUE
 									  );
 				$this->session->set_userdata($session_data);
 				redirect('dashboard'); 
@@ -38,4 +36,5 @@ class Login extends CI_Controller {
 			redirect(base_url());
 		}
 	}
+	
 }
