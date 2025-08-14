@@ -19,7 +19,7 @@
 
 		<!-- Style css -->
 		<link  href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
-		<!--<link href="<?php echo base_url(); ?>assets/css/dark-boxed.css" rel="stylesheet" />-->
+		<link href="<?php echo base_url(); ?>assets/css/dark-boxed.css" rel="stylesheet" />
 
 		<!-- Default css -->
 		<link href="<?php echo base_url(); ?>assets/css/default.css" rel="stylesheet">
@@ -75,12 +75,12 @@
 			}
 
 			.dark-mode .modal .close span {
-				color: #990033;
+				color: #fff;
 			}
 
 			.custom-modal-width {
-				max-width: 95%;
-				width: 95%;
+				max-width: 70%;
+				width: 70%;
 			}
 
 		</style>
@@ -89,7 +89,7 @@
 	</head>
 	<body class="app dark-mode">
 
-			<div class="modal fade" id="sample_model" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal fade" id="sample_model" tabindex="-1" role="dialog"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
 				<div class="modal-dialog custom-modal-width" role="document">
 					<div class="modal-content">
 						<div class="modal-header" style="background-color:#003366;color:#fff;">
@@ -113,6 +113,86 @@
 													<th scope="col">Remarks</th>
 												</tr>
 											</thead>
+											<tbody>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="analytical_report_modal" tabindex="-1" role="dialog"  aria-hidden="true" data-backdrop="static" data-keyboard="false"> 
+				<div class="modal-dialog custom-modal-width" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="background-color:#003366;color:#fff;">
+							<h5 class="modal-title" id="example-Modal3">Analytical Report</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+						
+								<div class="row" style="padding-top:5px;">
+									<div class="col-lg-12">
+										<table class="table" id="table_analytical_report" style="width: 100%;">
+												<thead style="background-color: #003366; color:#fff;">
+													<tr>
+														<th class="border-bottom-0">Delivery ID</th>
+														<th class="border-bottom-0">Report Date</th>
+														<th class="border-bottom-0">Ref No</th>
+														<th class="border-bottom-0">Report Status</th>
+														<th class="border-bottom-0">Despatch Info</th>
+														<th class="border-bottom-0">Despatch Status</th>
+														<th class="border-bottom-0">Despatch Date</th>
+														<th class="border-bottom-0">SR_Ref Application No</th>
+														<th class="border-bottom-0">SR_ApplicationId</th>
+														
+													</tr>
+												</thead>
+											<tbody>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="sample_report_modal" tabindex="-1" role="dialog"  aria-hidden="true" data-backdrop="static" data-keyboard="false"> 
+				<div class="modal-dialog custom-modal-width" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="background-color:#003366;color:#fff;">
+							<h5 class="modal-title" id="example-Modal3">Sample Report</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+						
+								<div class="row" style="padding-top:5px;">
+									<div class="col-lg-12">
+										<table class="table" id="table_sample_report" style="width: 100%;">
+												<thead style="background-color: #003366; color:#fff;">
+													<tr>
+														<th class="border-bottom-0">Delivery ID</th>
+														<th class="border-bottom-0">Report Date</th>
+														<th class="border-bottom-0">Ref No</th>
+														<th class="border-bottom-0">Report Status</th>
+														<th class="border-bottom-0">Despatch Info</th>
+														<th class="border-bottom-0">Despatch Status</th>
+														<th class="border-bottom-0">Despatch Date</th>
+														<th class="border-bottom-0">SR_Ref Application No</th>
+														<th class="border-bottom-0">SR_ApplicationId</th>
+														
+													</tr>
+												</thead>
 											<tbody>
 
 											</tbody>
@@ -283,7 +363,7 @@
 											<div class="">
 												<p class="mb-2 h6">Analytical Report</p>
 												<h2 class="mb-1 "><?php echo count($a_report); ?></h2>
-												<button type="button" class="btn btn-primary btn-sm">View</button>
+												<button type="button" class="btn btn-primary btn-sm" id="btn_analytical_report">View</button>
 											</div>
 											<div class=" my-auto ml-auto">
 												<div class="chart-wrapper text-center">
@@ -301,7 +381,7 @@
 											<div class="">
 												<p class="mb-2 h6">Sample Receipt Report</p>
 												<h2 class="mb-1 "><?php echo count($s_report); ?></h2>
-												<button type="button" class="btn btn-primary btn-sm">View</button>
+												<button type="button" class="btn btn-primary btn-sm" id="btn_sample_report">View</button>
 											</div>
 											<div class=" my-auto ml-auto">
 												<div class="chart-wrapper text-center">
@@ -525,18 +605,6 @@
 	</body>
 </html>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<!-- DataTables Buttons Extension -->
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-<!-- JSZip & pdfmake for Excel and PDF export -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 <script>
 $(document).ready(function() {
     $('#tbl_analytical_report').DataTable({
@@ -596,5 +664,118 @@ $(document).ready(function() {
         ]
     });
 });
+</script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click', '#btn_analytical_report', function(e) {
+        e.preventDefault();
+		analytical_report_datatable();
+    });
+	function analytical_report_datatable(){
+		if ($.fn.DataTable.isDataTable('#table_analytical_report')) {
+            $('#table_analytical_report').DataTable().destroy();
+        }
+        var table = $('#table_analytical_report').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'serverMethod': 'post',
+            'ajax': {
+                'url': '<?=site_url('Dashboard/analytical_report_form');?>',
+            },
+            'columns': [
+            
+            {
+                data: 'PRDH_DeliveryID'
+            },
+			{
+                data: 'ReportDate'
+            },
+			{
+                data: 'ReportRefNo'
+            },
+			{
+                data: 'ReportStatus'
+            },
+			{
+                data: 'DespatchInfo'
+            },
+			{
+                data: 'DespatchStatus'
+            },
+			{
+                data: 'DespatchDate'
+            },
+			{
+                data: 'SR_RefApplicationNo'
+            },
+			{
+                data: 'SR_ApplicationId'
+            }
+            ],
+			paging: true, // Ensure paging is enabled
+    		pageLength: 10, // Number of rows per page
+    		lengthMenu: [5, 10, 25, 50], // Options for rows per page
+    		order: [[0, 'asc']] // Default sorting
+        });
+        $('#analytical_report_modal').modal('show');
+	}
+</script>
+<script type="text/javascript">
+    $(document).on('click', '#btn_sample_report', function(e) {
+        e.preventDefault();
+		analytical_report_datatable();
+    });
+	function analytical_report_datatable(){
+		if ($.fn.DataTable.isDataTable('#table_sample_report')) {
+            $('#table_sample_report').DataTable().destroy();
+        }
+        var table = $('#table_sample_report').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'serverMethod': 'post',
+            'ajax': {
+                'url': '<?=site_url('Dashboard/sample_report_form');?>',
+            },
+            'columns': [
+            
+            {
+                data: 'PRDH_DeliveryID'
+            },
+			{
+                data: 'ReportDate'
+            },
+			{
+                data: 'ReportRefNo'
+            },
+			{
+                data: 'ReportStatus'
+            },
+			{
+                data: 'DespatchInfo'
+            },
+			{
+                data: 'DespatchStatus'
+            },
+			{
+                data: 'DespatchDate'
+            },
+			{
+                data: 'SR_RefApplicationNo'
+            },
+			{
+                data: 'SR_ApplicationId'
+            }
+            ],
+			paging: true, // Ensure paging is enabled
+    		pageLength: 10, // Number of rows per page
+    		lengthMenu: [5, 10, 25, 50], // Options for rows per page
+    		order: [[0, 'asc']] // Default sorting
+        });
+        $('#sample_report_modal').modal('show');
+	}
 </script>
 

@@ -47,4 +47,82 @@ class Common_model extends CI_Model {
 		where SR_CustomerID =?  order by  SR_ApplicationId desc",array($custmr_id))->result_array();
 		return $query;
 	}
+	public function analytical_report_form($params)
+	{
+		$custmr_id = $this->session->userdata('userid');
+		$draw      = (int)$params['draw'];
+		$start     = (int)$params['start'];
+		$length    = (int)$params['length'];
+		$colIdx    = (int)$params['order'][0]['column'];
+		$dir       = strtolower($params['order'][0]['dir']) === 'asc' ? 'ASC' : 'DESC';
+		$search    = trim($params['search']['value']);
+
+		// Map DataTables columns to real DB columns (avoid SQL injection)
+		$columns = [
+			0 => 'PHd.PRDH_DeliveryID',
+			1 => 'PHd.PRDH_DeliveryDate',
+			2 => 'PHd.PRDH_DeliveryRefNo',
+			3 => 'prs.PRS_Name',
+			4 => 'thd.TkHd_Date',
+			5 => 'Rhd.SR_RefApplicationNo'
+		];
+		$orderCol = isset($columns[$colIdx]) ? $columns[$colIdx] : 'PHd.PRDH_DeliveryDate';
+
+		// --- TOTAL (without search)
+		$this->db->from('tblQmsSamplePartialResultDeliveryHD PHd')
+				->join('tblQmsSampleReceiptHD Rhd', 'Rhd.SR_ApplicationId = PHd.SR_ApplicationNoId', 'inner')
+				->join('tblQmsPartialDeliveryResultStatus prs', 'prs.PRS_ID = PHd.PRDH_Status', 'left')
+				->join('tblQmsTicketHD thd', 'thd.TT_ID = 4 AND thd.TKHD_SrcRefID = PHd.PRDH_DeliveryID', 'left')
+				->join('tblQmsTicketHD TktVerify', 'TktVerify.TT_ID = 1 AND TktVerify.TKHD_SrcRefID = PHd.PRDH_DeliveryID', 'left')
+				->where('Rhd.SR_CustomerID', $custmr_id)
+				->where_in('PHd.PRDH_Status', [2,3]);
+
+		$totalRecords = $this->db->count_all_results(); // no search
+
+		// --- FILTERED + DATA (with search)
+		$this->db->select("
+			PHd.PRDH_DeliveryID,
+			CONVERT(VARCHAR(12), PHd.PRDH_DeliveryDate, 103) AS ReportDate,
+			PHd.PRDH_DeliveryRefNo AS ReportRefNo,
+			prs.PRS_Name AS ReportStatus,
+			PHd.PRDH_Status,
+			PHd.PRDH_PrintStatus,
+			dbo.fncGetTicketInfo(thd.TkHd_ID, 1) AS DespatchInfo,
+			CASE WHEN thd.TkHd_Status = 1 THEN 'Despatched' ELSE '' END AS DespatchStatus,
+			CONVERT(VARCHAR(12), thd.TkHd_Date, 103) AS DespatchDate,
+			Rhd.SR_RefApplicationNo,
+			Rhd.SR_ApplicationId
+		", false)
+		->from('tblQmsSamplePartialResultDeliveryHD PHd')
+		->join('tblQmsSampleReceiptHD Rhd', 'Rhd.SR_ApplicationId = PHd.SR_ApplicationNoId', 'inner')
+		->join('tblQmsPartialDeliveryResultStatus prs', 'prs.PRS_ID = PHd.PRDH_Status', 'left')
+		->join('tblQmsTicketHD thd', 'thd.TT_ID = 4 AND thd.TKHD_SrcRefID = PHd.PRDH_DeliveryID', 'left')
+		->join('tblQmsTicketHD TktVerify', 'TktVerify.TT_ID = 1 AND TktVerify.TKHD_SrcRefID = PHd.PRDH_DeliveryID', 'left')
+		->where('Rhd.SR_CustomerID', $custmr_id)
+		->where_in('PHd.PRDH_Status', [2,3]);
+
+		if ($search !== '') {
+			$this->db->group_start()
+					->like('PHd.PRDH_DeliveryID', $search)
+					->or_like('PHd.PRDH_DeliveryRefNo', $search)
+					->or_like('prs.PRS_Name', $search)
+					->group_end();
+		}
+
+		// Count after search
+		$filteredRecords = $this->db->count_all_results('', false); // don't reset query
+
+		// Order + Paginate
+		$this->db->order_by($orderCol, $dir)
+				->limit($length, $start);
+
+		$records = $this->db->get()->result_array();
+
+		return [
+			'draw' => $draw,
+			'iTotalRecords' => $totalRecords,
+			'iTotalDisplayRecords' => $filteredRecords,
+			'aaData' => $records
+		];
+	}
 }
