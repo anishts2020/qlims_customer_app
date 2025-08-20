@@ -125,4 +125,70 @@ class Common_model extends CI_Model {
 			'aaData' => $records
 		];
 	}
+	public function sample_report_form($params)
+	{
+		$custmr_id = $this->session->userdata('userid');
+		$draw      = (int)$params['draw'];
+		$start     = (int)$params['start'];
+		$length    = (int)$params['length'];
+		$colIdx    = (int)$params['order'][0]['column'];
+		$dir       = strtolower($params['order'][0]['dir']) === 'asc' ? 'ASC' : 'DESC';
+		$search    = trim($params['search']['value']);
+
+		// Map DataTables columns to DB columns
+		$columns = [
+			0 => 'rhd.SR_ApplicationId',
+			1 => 'rhd.SR_RefApplicationNo',
+			2 => 'rhd.SR_ReceiptDate',
+			3 => 'rhd.SR_CustReference',
+			4 => 'ras.Aps_Code',
+			5 => 'rhd.Aps_ID'
+		];
+		$orderCol = isset($columns[$colIdx]) ? $columns[$colIdx] : 'rhd.SR_ApplicationId';
+
+		// --- TOTAL RECORDS (no search)
+		$this->db->from('tblQmsSampleReceiptHD rhd')
+			->join('tblQmsApplicationStatus ras', 'rhd.Aps_ID = ras.Aps_Id', 'left')
+			->where('rhd.SR_CustomerID', $custmr_id);
+
+		$totalRecords = $this->db->count_all_results();
+
+		// --- FILTERED + DATA (with search)
+		$this->db->select("
+			rhd.SR_ApplicationId,
+			rhd.SR_RefApplicationNo,
+			CONVERT(VARCHAR(12), rhd.SR_ReceiptDate, 103) AS SR_ReceiptDate,
+			rhd.SR_CustReference,
+			ras.Aps_Code AS ReceiptStatus,
+			rhd.Aps_ID
+		", false)
+		->from('tblQmsSampleReceiptHD rhd')
+		->join('tblQmsApplicationStatus ras', 'rhd.Aps_ID = ras.Aps_Id', 'left')
+		->where('rhd.SR_CustomerID', $custmr_id);
+
+		if ($search !== '') {
+			$this->db->group_start()
+				->like('rhd.SR_ApplicationId', $search)
+				->or_like('rhd.SR_RefApplicationNo', $search)
+				->or_like('rhd.SR_CustReference', $search)
+				->or_like('ras.Aps_Code', $search)
+				->group_end();
+		}
+
+		// Count after search
+		$filteredRecords = $this->db->count_all_results('', false); // don't reset query
+
+		// Order + Paginate
+		$this->db->order_by($orderCol, $dir)
+			->limit($length, $start);
+
+		$records = $this->db->get()->result_array();
+
+		return [
+			'draw' => $draw,
+			'iTotalRecords' => $totalRecords,
+			'iTotalDisplayRecords' => $filteredRecords,
+			'aaData' => $records
+		];
+	}
 }

@@ -25,4 +25,10 @@ class Dashboard extends CI_Controller {
     	$data = $this->common->analytical_report_form($postData);
     	echo json_encode($data);
     }
+	public function sample_report_form()
+    {
+        $postData = $this->input->post(); // Get POST data
+    	$data = $this->common->sample_report_form($postData);
+    	echo json_encode($data);
+    }
 }

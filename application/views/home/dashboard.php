@@ -60,6 +60,7 @@
 
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 
 		<style>
 			/* Custom modal size */
@@ -102,21 +103,7 @@
 						
 								<div class="row" style="padding-top:5px;">
 									<div class="col-lg-12">
-										<table class="table" id="table_executive_followup" style="width: 100%;">
-											<thead style="background-color: #336699;"> 
-												<tr>
-													<th scope="col">Contacted Person</th>
-													<th scope="col">Follow-up Time</th>
-													<th scope="col">Follow-up Type</th>
-													<th scope="col">Next Follow-up Time</th>
-													<th scope="col">Disposition</th>
-													<th scope="col">Remarks</th>
-												</tr>
-											</thead>
-											<tbody>
-
-											</tbody>
-										</table>
+										
 									</div>
 								</div>
 						</div>
@@ -137,7 +124,7 @@
 						<div class="modal-body">
 						
 								<div class="row" style="padding-top:5px;">
-									<div class="col-lg-12">
+									<div class="table-responsive">
 										<table class="table" id="table_analytical_report" style="width: 100%;">
 												<thead style="background-color: #003366; color:#fff;">
 													<tr>
@@ -177,20 +164,16 @@
 						<div class="modal-body">
 						
 								<div class="row" style="padding-top:5px;">
-									<div class="col-lg-12">
+									<div class="table-responsive">
 										<table class="table" id="table_sample_report" style="width: 100%;">
 												<thead style="background-color: #003366; color:#fff;">
 													<tr>
-														<th class="border-bottom-0">Delivery ID</th>
-														<th class="border-bottom-0">Report Date</th>
-														<th class="border-bottom-0">Ref No</th>
-														<th class="border-bottom-0">Report Status</th>
-														<th class="border-bottom-0">Despatch Info</th>
-														<th class="border-bottom-0">Despatch Status</th>
-														<th class="border-bottom-0">Despatch Date</th>
-														<th class="border-bottom-0">SR_Ref Application No</th>
-														<th class="border-bottom-0">SR_ApplicationId</th>
-														
+														<th class="border-bottom-0">SR Application Id</th>
+														<th class="border-bottom-0">SR RefApplication No</th>
+														<th class="border-bottom-0">SR Receipt Date</th>
+														<th class="border-bottom-0">SR Cust Reference</th>
+														<th class="border-bottom-0">Receipt Status</th>
+														<th class="border-bottom-0">Aps ID</th>
 													</tr>
 												</thead>
 											<tbody>
@@ -281,15 +264,15 @@
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><svg xmlns="http://www.w3.org/2000/svg" id="Capa_1"  class="icon_img" enable-background="new 0 0 512 512"  viewBox="0 0 512 512"><g><path d="m472 216.061v-100c0-22.056-17.944-40-40-40h-352c-22.056 0-40 17.944-40 40v200c0 22.056 17.944 40 40 40h352c22.056 0 40-17.944 40-40 0-11.046 8.954-20 20-20s20 8.954 20 20c0 44.112-35.888 80-80 80h-156v39.878h70c11.046 0 20 8.954 20 20s-8.954 20-20 20h-180c-11.046 0-20-8.954-20-20s8.954-20 20-20h70v-39.878h-156c-44.112 0-80-35.888-80-80v-200c0-44.112 35.888-80 80-80h352c44.112 0 80 35.888 80 80v100c0 11.046-8.954 20-20 20s-20-8.954-20-20zm-82-71h-119c-11.046 0-20 8.954-20 20s8.954 20 20 20h119c11.046 0 20-8.954 20-20s-8.954-20-20-20zm-163.261-39.419c-8.515-7.035-21.121-5.835-28.157 2.68l-43.205 52.293-17.048-17.507c-7.708-7.915-20.369-8.083-28.282-.376-7.914 7.706-8.083 20.368-.376 28.282l21.454 22.033c.177.182.357.36.541.534 6.483 6.17 15.136 9.604 24.038 9.604.765 0 1.532-.025 2.3-.077 9.644-.643 18.65-5.31 24.737-12.811l46.678-56.497c7.035-8.516 5.835-21.122-2.68-28.158zm163.261 162.419h-119c-11.046 0-20 8.954-20 20s8.954 20 20 20h119c11.046 0 20-8.954 20-20s-8.954-20-20-20zm-163.261-39.543c-8.515-7.035-21.121-5.835-28.157 2.68l-43.216 52.307-17.076-17.438c-7.729-7.893-20.391-8.026-28.283-.296-7.892 7.728-8.024 20.391-.296 28.283l21.454 21.909c.164.167.331.332.5.493 6.483 6.171 15.136 9.604 24.039 9.604.765 0 1.533-.026 2.3-.077 9.644-.643 18.65-5.31 24.737-12.811l46.678-56.497c7.035-8.515 5.835-21.121-2.68-28.157z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"/></g> </svg>
 									Samples <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
-										<li aria-haspopup="true"><a href="analytics.html" class="slide-item">Add New</a></li>
+										<li aria-haspopup="true"><a href="#" data-toggle="modal" data-target="#sample_model" class="slide-item">Add New</a></li>
 									</ul>
 								</li>
 								
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon_img" viewBox="0 0 512 512"><g><path d="m199.945312 359.898438h67.980469v39.988281h-67.980469zm-74.980468-4.996094c-13.804688 0-24.992188 11.1875-24.992188 24.992187 0 13.800781 11.1875 24.992188 24.992188 24.992188 13.804687 0 24.992187-11.191407 24.992187-24.992188 0-13.804687-11.1875-24.992187-24.992187-24.992187zm276.921875-121.96875h-201.941407v39.988281h201.941407zm-276.921875-4.996094c-13.804688 0-24.992188 11.1875-24.992188 24.992188 0 13.804687 11.1875 24.992187 24.992188 24.992187 13.804687 0 24.992187-11.1875 24.992187-24.992187 0-13.804688-11.1875-24.992188-24.992187-24.992188zm276.921875-114.96875h-201.941407v39.988281h201.941407zm-276.921875-5c-13.804688 0-24.992188 11.191406-24.992188 24.992188 0 13.804687 11.1875 24.996093 24.992188 24.996093 13.804687 0 24.992187-11.191406 24.992187-24.996093 0-13.800782-11.1875-24.992188-24.992187-24.992188zm-84.976563 343.90625v-391.890625c0-11.027344 8.96875-19.996094 19.996094-19.996094h391.890625c11.023438 0 19.992188 8.96875 19.992188 19.996094v225.9375h39.988281v-225.9375c0-33.074219-26.90625-59.984375-59.980469-59.984375h-391.890625c-33.074219 0-59.984375 26.910156-59.984375 59.984375v391.890625c0 33.074219 26.910156 59.980469 59.984375 59.980469h230.933594v-39.988281h-230.933594c-11.027344 0-19.996094-8.96875-19.996094-19.992188zm443.734375 60.125-39.820312-39.820312c-13.472656 8.050781-29.210938 12.683593-46.011719 12.683593-49.613281 0-89.976563-40.363281-89.976563-89.972656 0-49.613281 40.363282-89.976563 89.976563-89.976563 49.609375 0 89.972656 40.363282 89.972656 89.976563 0 18.355469-5.53125 35.441406-15.003906 49.691406l39.140625 39.140625zm-85.832031-67.125c27.5625 0 49.984375-22.421875 49.984375-49.984375s-22.421875-49.988281-49.984375-49.988281-49.988281 22.425781-49.988281 49.988281 22.425781 49.984375 49.988281 49.984375zm0 0" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"/></g> </svg>
 									Reports <i class="fa fa-angle-down horizontal-icon"></i> </a>
 									<ul class="sub-menu">
-										<li aria-haspopup="true"><a href="analytics.html" class="slide-item">Analytical Report</a></li>
-										<li aria-haspopup="true"><a href="analytics.html" class="slide-item">Sample Receipt Report</a></li>
+										<li aria-haspopup="true"><a href="#" id="btn_analytical_report" class="slide-item">Analytical Report</a></li>
+										<li aria-haspopup="true"><a href="#" id="btn_sample_report" class="slide-item">Sample Receipt Report</a></li>
 									</ul>
 								
 								</li>
@@ -313,35 +296,7 @@
 							</div>
 							<div class="page-rightheader">
 								<div class="ml-3 ml-auto d-flex">
-									<!--<div class="mt-3 mt-md-0">
-										<div class="border-right pr-4 mt-1 d-xl-block">
-											<p class="text-muted mb-2">Category</p>
-											<h6 class="font-weight-semibold mb-0">All Categories</h6>
-										</div>
-									</div>
-									<div class="mt-3 mt-md-0">
-										<div class="border-right pl-0 pl-md-4 pr-4 mt-1 d-xl-block">
-											<p class="text-muted mb-1">Customer Rating</p>
-											<div class="wideget-user-rating">
-												<a href="#">
-													<i class="fa fa-star text-warning"></i>
-												</a>
-												<a href="#">
-													<i class="fa fa-star text-warning"></i>
-												</a>
-												<a href="#">
-													<i class="fa fa-star text-warning"></i>
-												</a>
-												<a href="#">
-													<i class="fa fa-star text-warning"></i>
-												</a>
-												<a href="#">
-													<i class="fa fa-star-o text-warning mr-1"></i>
-												</a>
-												<span class="">(4.5/5)</span>
-											</div>
-										</div>
-									</div>-->
+									
 									<span class="mt-3 mt-md-0 pg-header">
 										<a href="#" class="btn btn-info ml-0 ml-md-4 mt-1 " data-toggle="modal" data-target="#sample_model"><i class="typcn typcn-shopping-cart mr-1"></i>Add New Sample</a>
 									</span>
@@ -349,10 +304,6 @@
 							</div>
 						</div>
 						<!-- Page-header closed -->
-
-						<!-- Banner opened -->
-					
-						<!-- Banner opened -->
 
 						<!-- row opened -->
 						<div class="row">
@@ -397,120 +348,6 @@
 						</div>
 						<!-- row closed -->
 
-						<!-- row opened -->
-
-						<div class="row">
-							<div class="col-md-12 col-lg-12">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title" style="color:#99ccff;">Analytical Report</div>
-										<div class="card-options">
-											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-											<a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
-											
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="table-responsive">
-											<table id="tbl_analytical_report" class="table table-striped table-bordered text-nowrap">
-												<thead style="background-color: #003366; color:#fff;">
-													<tr>
-														<th class="border-bottom-0">Delivery ID</th>
-														<th class="border-bottom-0">Report Date</th>
-														<th class="border-bottom-0">Ref No</th>
-														<th class="border-bottom-0">Report Status</th>
-														<th class="border-bottom-0">Despatch Info</th>
-														<th class="border-bottom-0">Despatch Status</th>
-														<th class="border-bottom-0">Despatch Date</th>
-														<th class="border-bottom-0">SR_Ref Application No</th>
-														<th class="border-bottom-0">SR_ApplicationId</th>
-														
-													</tr>
-												</thead>
-												<tbody>
-													<?php if (!empty($a_report) && is_array($a_report)) {
-														foreach ($a_report as $key => $vals) { ?>
-															<tr>
-																<td><?php echo $vals['PRDH_DeliveryID']; ?></td>
-																<td><?php echo $vals['ReportDate']; ?></td>
-																<td><?php echo $vals['ReportRefNo']; ?></td>
-																<td><?php echo $vals['ReportStatus']; ?></td>
-																<td><?php echo $vals['DespatchInfo']; ?></td>
-																<td><?php echo $vals['DespatchStatus']; ?></td>
-																<td><?php echo $vals['DespatchDate']; ?></td>
-																<td><?php echo $vals['SR_RefApplicationNo']; ?></td>
-																<td><?php echo $vals['SR_ApplicationId']; ?></td>
-															</tr>
-													<?php }
-													} else {
-														echo '<tr><td colspan="9">No report data available.</td></tr>';
-													} ?>
-													
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						
-						<!-- row closed -->
-	`					<div class="row">
-							<div class="col-md-12 col-lg-12">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title" style="color:#99ccff;">Sample Receipt Report</div>
-										<div class="card-options">
-											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-											<a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
-											
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="table-responsive">
-											<table id="tbl_sample_report" class="table table-striped table-bordered text-nowrap">
-												<thead style="background-color: #003366; color:#fff;">
-													<tr>
-														<th class="border-bottom-0">SR Application Id</th>
-														<th class="border-bottom-0">SR RefApplication No</th>
-														<th class="border-bottom-0">SR Receipt Date</th>
-														<th class="border-bottom-0">SR Cust Reference</th>
-														<th class="border-bottom-0">Receipt Status</th>
-														<th class="border-bottom-0">Aps ID</th>
-														
-													</tr>
-												</thead>
-												<tbody>
-													<?php if (!empty($s_report) && is_array($a_report)) {
-														foreach ($s_report as $key => $vals) { ?>
-															<tr>
-																<td><?php echo $vals['SR_ApplicationId']; ?></td>
-																<td><?php echo $vals['SR_RefApplicationNo']; ?></td>
-																<td><?php echo $vals['SR_ReceiptDate']; ?></td>
-																<td><?php echo $vals['SR_CustReference']; ?></td>
-																<td><?php echo $vals['ReceiptStatus']; ?></td>
-																<td><?php echo $vals['Aps_ID']; ?></td>
-															</tr>
-													<?php }
-													} else {
-														echo '<tr><td colspan="6">No report data available.</td></tr>';
-													} ?>
-													
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- row opened -->
-						
-						<!-- row closed -->
-
-						<!-- row opened -->
-						
-						<!-- row closed -->
 					</div>
 				</div>
 				<!-- App-content closed -->
@@ -605,71 +442,11 @@
 	</body>
 </html>
 
-<script>
-$(document).ready(function() {
-    $('#tbl_analytical_report').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                title: 'Analytical Report',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'excelHtml5',
-                title: 'Analytical Report',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'print',
-                title: 'Report Data',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            }
-        ]
-    });
-});
-</script>
-<script>
-$(document).ready(function() {
-    $('#tbl_sample_report').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                title: 'Report Data',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'excelHtml5',
-                title: 'Sample Receipt Report',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'print',
-                title: 'Sample Receipt Report',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            }
-        ]
-    });
-});
-</script>
-
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript">
     $(document).on('click', '#btn_analytical_report', function(e) {
         e.preventDefault();
@@ -680,6 +457,8 @@ $(document).ready(function() {
             $('#table_analytical_report').DataTable().destroy();
         }
         var table = $('#table_analytical_report').DataTable({
+			'scrollX': true,  
+    		'scrollCollapse': true,
             'processing': true,
             'serverSide': true,
             'serverMethod': 'post',
@@ -719,21 +498,29 @@ $(document).ready(function() {
 			paging: true, // Ensure paging is enabled
     		pageLength: 10, // Number of rows per page
     		lengthMenu: [5, 10, 25, 50], // Options for rows per page
-    		order: [[0, 'asc']] // Default sorting
+    		order: [[0, 'asc']], // Default sorting
+			responsive: true,   // 🔹 Enable responsive
+        	autoWidth: false    // 🔹 Prevent fixed width issues
         });
+
+		$('#analytical_report_modal').on('shown.bs.modal', function () {
+			table.columns.adjust().responsive.recalc();
+		});
         $('#analytical_report_modal').modal('show');
 	}
 </script>
 <script type="text/javascript">
     $(document).on('click', '#btn_sample_report', function(e) {
         e.preventDefault();
-		analytical_report_datatable();
+		sample_report_datatable();
     });
-	function analytical_report_datatable(){
+	function sample_report_datatable(){
 		if ($.fn.DataTable.isDataTable('#table_sample_report')) {
             $('#table_sample_report').DataTable().destroy();
         }
         var table = $('#table_sample_report').DataTable({
+			'scrollX': true,  
+    		'scrollCollapse': true,
             'processing': true,
             'serverSide': true,
             'serverMethod': 'post',
@@ -741,41 +528,37 @@ $(document).ready(function() {
                 'url': '<?=site_url('Dashboard/sample_report_form');?>',
             },
             'columns': [
-            
             {
-                data: 'PRDH_DeliveryID'
+                data: 'SR_ApplicationId'
             },
-			{
-                data: 'ReportDate'
-            },
-			{
-                data: 'ReportRefNo'
-            },
-			{
-                data: 'ReportStatus'
-            },
-			{
-                data: 'DespatchInfo'
-            },
-			{
-                data: 'DespatchStatus'
-            },
-			{
-                data: 'DespatchDate'
-            },
-			{
+            {
                 data: 'SR_RefApplicationNo'
             },
 			{
-                data: 'SR_ApplicationId'
+                data: 'SR_ReceiptDate'
+            },
+			{
+                data: 'SR_CustReference'
+            },
+			{
+                data: 'ReceiptStatus'
+            },
+			{
+                data: 'Aps_ID'
             }
             ],
 			paging: true, // Ensure paging is enabled
     		pageLength: 10, // Number of rows per page
     		lengthMenu: [5, 10, 25, 50], // Options for rows per page
-    		order: [[0, 'asc']] // Default sorting
+    		order: [[0, 'asc']], // Default sorting
+			responsive: true,   // 🔹 Enable responsive
+        	autoWidth: false    // 🔹 Prevent fixed width issues
         });
+
+		$('#sample_report_modal').on('shown.bs.modal', function () {
+			table.columns.adjust().responsive.recalc();
+		});
+
         $('#sample_report_modal').modal('show');
 	}
 </script>
-
